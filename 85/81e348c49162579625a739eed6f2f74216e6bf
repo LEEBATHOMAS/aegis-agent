@@ -1,0 +1,18 @@
+requirements.txt
+  h_77d3f7f0569767 5
+src/aegis/chaos.py
+  h_77d3f7f0569767 1-39
+src/aegis/mcp_server.py
+  h_77d3f7f0569767 1-137
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8581e348c49162579625a739eed6f2f74216e6bf",
+  "prompts": {},
+  "humans": {
+    "h_77d3f7f0569767": {
+      "author": "Leeba Thomas <leeba.thomas@coupa.com>"
+    }
+  }
+}
