@@ -1,0 +1,26 @@
+docker-compose.yaml
+  h_77d3f7f0569767 1-9
+knowledge/postmortems/2025-11-passenger-count-nulls.md
+  h_77d3f7f0569767 1-22
+knowledge/runbooks/null-spike.md
+  h_77d3f7f0569767 1-22
+knowledge/runbooks/volume-drop.md
+  h_77d3f7f0569767 1-17
+requirements.txt
+  h_77d3f7f0569767 6-7
+src/aegis/mcp_server.py
+  h_77d3f7f0569767 26-27,55-57,59,127
+src/aegis/rag.py
+  h_77d3f7f0569767 1-88
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c5b60b785e5890313bfccb27ecd1c3ed51ed23ff",
+  "prompts": {},
+  "humans": {
+    "h_77d3f7f0569767": {
+      "author": "Leeba Thomas <leeba.thomas@coupa.com>"
+    }
+  }
+}
