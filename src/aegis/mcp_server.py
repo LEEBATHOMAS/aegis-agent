@@ -8,7 +8,6 @@ mcp = MCPServer("aegis")
 MAX_ROWS = 50
 BLOCKED = ("insert", "update", "delete","drop","truncate","alter","create","copy","replace")
 
-get_lineage = {}
 
 def _rows(cursor):
     columns = [c[0] for c in cursor.description]
@@ -24,8 +23,8 @@ def _rows(cursor):
 
 @mcp.tool()
 def get_dq_metrics(limit: int =20) -> dict:
-    """Limit data-quality checks from ops.dq_metrics: volume, freshness_hours,
-    null_pct and schema_hash, each with status ok/warn/null. NEwest first.
+    """Latest data-quality checks from ops.dq_metrics: volume, freshness_hours,
+    null_pct and schema_hash, each with status ok/warn/fail. NEwest first.
     Call this first when investigating a data incident"""
 
     conn = get_con()
@@ -53,11 +52,11 @@ def run_sql(query:str) -> dict:
     Only Select ot WITH queries are allowed. Results are capped at 50 rows.
     Tables: bronze.trips_raw, silver.trips, gold.trips_hourly, ops.dq_metrics"""
 
-    q = query.strip().rstrip(";").lower()
-
-    if not q.startswith(("select","with")):
+    q = query.strip().rstrip(";")
+    lowered = q.lower()
+    if not lowered.startswith(("select","with")):
         return {"error": "Only Select or WITH queries are allowed"}
-    if any (word in q.split() for word in BLOCKED):
+    if any (word in lowered.split() for word in BLOCKED):
         return {"error":"Query contains blocked keywords was rejected"}
 
     conn = get_con()
@@ -125,7 +124,7 @@ PIPELINE_RUNS = [
 
 @mcp.tool()
 def get_pipeline_runs(limit: int =10) -> dict:
-    """Recent pipeline runs, newest first. Use this to check whether
+    """Recent pipeline runs, newest first. Use this to check 
     something changed before it went bad.
 
     """
